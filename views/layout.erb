@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+</head>
+<body>
+   <% if session[:user_id] %>
+	<nav class="navbar">
+		<li><a href="/">Home</a></li>
+		<li><a href="/new">New Blog</a></li>
+		<li><a href="/userb">Blogss</a></li>
+		<li><a href="/all_user">All User</a></li>
+
+	</nav>
+	
+
+
+   You are logged in as <%= current_user.username%>
+
+
+   <% end %>
+
+	<div class='main-container'>
+		<%= yield %>
+
+	</div>
+
+</body>
+</html>

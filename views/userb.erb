@@ -1,0 +1,49 @@
+<% if current_user %>
+   <form method="post" action="logout">
+			<input type="submit" value="logout">
+
+   </form>
+
+   <form action="/destroy/user/<%= @user.id %>" method="post">
+		<input type="submit" value="delete user">
+	</form>
+
+
+
+
+
+
+
+
+
+<h3>All Blogs</h3>
+
+
+<% @blogs.each_with_index do |b,index| %>
+	<div><a href="/blogs/<%= b.id %>"<%= index + 1 %> </a></div>
+	<div>Title:<%= b.title%></div>
+	<div>Content:<%= b.content%></div>
+	<div> <%= b.user.username %></div>
+<% end %>	
+
+ You are logged in as <%= current_user.username%>
+
+
+   
+   <div class="recentPosts">
+    <h1>Recent Posts</h1>
+
+
+    <% @blogs.reverse.take(10).each do |b| %>
+      <div class="blgDiv">
+        <div id="blgTitle"><a href="/blog/<%= b.id %>"><%= b.title %></a></div>
+        <div id="blgContent"><%= b.content %></div>
+        <% id= b.user_id %>
+        <div> <%= b.user.username %></div>
+      </div>
+    <% end %>
+  </div>
+
+ <% end %>
+ 
+ 

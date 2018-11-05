@@ -1,0 +1,23 @@
+<form method="post" action="logout">
+			<input type="submit" value="logout">
+
+</form>
+
+
+<h3>INDI BLOG</h3>
+
+<div><%= @blog.title %></div>
+<div><%= @blog.content %></div>
+
+
+<hr>
+<a href="/blogs/<%= @blog.id %>/edit"><input type="submit" value="update"></a>
+
+<hr>
+<br>
+
+<form  method="post" action="/destroy/<%= @blog.id %>">
+	<input type="submit" value="delete Blog">
+</form>
+
+
