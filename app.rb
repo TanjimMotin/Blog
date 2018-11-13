@@ -1,177 +1,211 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require './models'
-
+require 'sinatra/flash'
 
 set :database, "sqlite3:second.sqlite3"
 set :sessions, true
 
+require './models'
+
+
 
 def current_blog
-	@blog = Blog.find(params[:id])
+    @blog = Blog.find(params[:id])
+end
 
-end	
+
 def current_user
-   if(session[:user_id])
-       @currentuser = User.find(session[:user_id])
-   end
-end	
+    if(session[:user_id])
+        @currentuser = User.find(session[:user_id])
+    end
+end
 
-get "/" do 
-    @users = User.all
-    @blogs =Blog.all  
-	erb :index
-end	
-get "/userb" do
-    @blogs =Blog.all
-    @user = User.find(session[:user_id])
-	erb :userb
-end	
+
+
+get "/" do
+    @blogs = Blog.all
+   
+    if session[:user_id]
+        
+    end
+    
+    if !session[:user_id]
+        flash[:notice] = "Welcome to BirdBlog! "
+        
+    end
+
+
+erb :index
+
+end
+
 get "/new" do
-	
 
-	erb :new
+    erb :new
 end
 
 post "/create_blog" do
-	if !session[:user_id]
-		redirect "/"
-	end	
-	title = params[:title]
-	content = params[:content]
-	user = User.find(session[:user_id])
-    Blog.create(title: title, content: content, user_id:user.id)
 
-	redirect "/userb"
-end	
-
-get '/blogs/:id'  do
-
-
-	current_blog
-    erb :show
-
-end
-get "/blogs/:id/edit" do
-    current_blog
-	erb :edit
-end
-
-
-post "/update/:id"  do
-   current_blog 
     if !session[:user_id]
-     	redirect "/"
-     end
-  if session[:user_id] != @blog.user_id
-            redirect"/"
-     end       
-  if @blog.update(title: params[:title],content: params[:content])
-       redirect "/"
-  else
-  	erb "/blogs/<%= @blog.id %>/edit"
-  end
+        redirect"/"
+    end
+    title = params[:title]
+    content = params[:content]
 
+    user = User.find(session[:user_id])
+
+    Blog.create(title:title , content: content, user_id: user.id )
+    redirect "/"
 end
 
-post "/destroy/:id" do
-	 current_blog
-     if !session[:user_id]
-     	redirect "/"
-     end
-    if session[:user_id] != @blog.user_id
-            redirect"/" 	
+get "/blogs/:id" do
     
-    else
-	 if @blog.destroy
-	 	redirect "/"
-	 end
-  end 
-end	
+    @blog = Blog.find(params[:id])
 
-
-
-	post "/signup"  do
-
-		username= params[:username]
-		password= params[:password]
-		user =User.new(username: username,password: password)
-		if user.save
-			redirect "/hello"
-		else
-		  erb :index 
-
-		
-		end  	
-
-
-	end	
-
-get "/hello" do
-	
-
-	erb :hello
+    erb :show
 end
-post "/login" do
-		user = User.where(username: params[:username]).first
 
-
-		if user.password == params[:password]
-			session[:user_id] = user.id
-			# redirect "/hello"
-			redirect "/users/#{user.id}"
-		else
-		  erb :index	
-
-
-    end	
+get "/blogs/:id/edit" do
+    
+    current_blog
+    
+    erb :edit
+    
 end
+
+post "/update/:id" do
+    current_blog
+   
+    if !session[:user_id]
+        redirect"/"
+    end
+
+    if session[:user_id] != @blog.user_id
+        flash[:notice] = "you do not have permission to change this blog "
+            redirect"/"
+        end
+
+
+    
+        if @blog.update(title:params[:title], content: params[:content] )
+            redirect "/"
+        else
+            erb "/blogs/@blog.id/edit"
+        end
+    end
+
+
+    post "/destroy/:id" do
+        @blog = Blog.find(params[:id])
+        if !session[:user_id]
+            redirect"/"
+            
+        end
+
+        if session[:user_id] != @blog.user_id
+            flash[:notice] = "you do not have permission to delete this is not your blog"
+                redirect"/"
+          
+         else
+
+            if @blog.destroy 
+                redirect"/"
+            end
+        end
+    end
+
+
+        post '/signup' do
+            username = params[:username]
+            password = params[:password]
+
+            user = User.new(username: username , password: password)
+            if user.save
+                
+                redirect "/"
+            else
+                erb :index
+        end
+    end
+
+    get "/hello" do
+        erb :hello
+    end
+
+
+    post "/login" do
+        user = User.where(username: params[:username]).first
+        password = params[:password]
+        if user && user.password == password
+        session[:user_id] = user.id
+        # redirect"/users/#{user.id}"
+        redirect "/"
+        end
+
+        if  user && user.password != password
+            flash[:alert] = 'log in didnt work'
+            redirect"/"
+           
+        else
+            flash[:alert] = 'log in no exist'
+            redirect"/"
+         
+        end
+    
+        erb :index
+    
+end
+
+post "/logout" do
+    session[:user_id] = nil
+    flash[:notice] = "Goodbye!"
+    redirect"/"
+end
+
 
 get "/users/:id" do
-	current_user
-	erb :user
-end	
 
-post "/users/logout" do
-
-   session[:user_id] =nil
-   redirect "/"
-
-
-end
-post "/logout" do
-
-   session[:user_id] =nil
-   redirect "/"
-
+    @user = User.find(params[:id])
+     if !session[:user_id]
+        redirect"/"
+    end
+    
+    erb :user
 
 end
 
-post '/destroy/:id' do
-  current_blog
-  @blog.destroy
-  redirect '/'
+get "/alluser" do
+
+    @user=User.all
+
+    if !session[:user_id]
+        redirect"/"
+    end
+
+    erb :alluser
+
 end
 
 post "/destroy/user/:id" do
-  session[:user_id] =nil
-  @user = User.find(params[:id])
-  @user.blogs.each do |b|
-  	b.destroy
-  end
+    if !session[:user_id]
+        redirect"/"
+    end
+     if params[:delete_password] == current_user.password
+    session[:user_id] =nil
+    @user = User.find(params[:id])
+    @user.blogs.each do |x|
+    x.destroy
+ end
+else
+    flash[:notice] = "please input a correct PW!"
+    redirect "/"
+   
+end
  
-  @user.destroy
-
-  redirect "/"
+ @user.destroy
+ flash[:notice] = "you have deleted your user page!"
+ redirect "/"
 end
-get "/all_user" do
 
-   @user= User.all
 
-   if !session[:user_id]
-       redirect "/"
-   end
-
-   erb :all_user
-
-end

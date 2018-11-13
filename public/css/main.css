@@ -1,3 +1,374 @@
+ body {
+  margin: 0;
+  padding: 0;
+ background-image: url(https://images.pexels.com/photos/158780/leaf-nature-green-spring-158780.jpeg?auto=compress&cs=tinysrgb&h=350);
+ background-size: : 100% 100%;
+ 
+
+  
+  font-size: small;
+}
+
+.main-container{
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(https://images.pexels.com/photos/158780/leaf-nature-green-spring-158780.jpeg?auto=compress&cs=tinysrgb&h=350);
+    background-size: : 100% 100%;
+
+    min-width: 750px;
+    background-color: lime;
+}
 
 
-/*# sourceMappingURL=main.css.map */
+#flash{width: 150%;
+  color:white;
+  font-size: 18px;
+
+}
+ 
+
+
+textarea{
+  color:gray;
+  background-color:white;
+}
+
+.headerText{
+ 
+  font-size: xx-large;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+text-align: center;
+
+}
+
+
+.blogText{
+  padding-top:10px;
+  margin-left: 10px;
+  padding-left:13%;
+
+  font-size: large;
+  text-align: justify;
+  width: 475px;
+  margin-left: 10px;
+  margin-right: auto;
+  
+  
+}
+
+.blogTitle a{
+  font-size: 3.4em;
+  padding: 10px 10px;
+text-align: center;
+
+color: #081a00;
+text-decoration: none;
+float: center;
+ }
+
+ .displayWrap{
+   padding-top: 10px;
+   width: 60%;
+  display: grid;
+  grid-template-columns:auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 100px;
+  background-color: #99ff66; 
+}
+
+ div .blogTitle{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  float: right;
+ }
+
+ hr{
+   opacity: .2;
+ }
+
+ #logoText a{
+   font-size:xx-large;
+   padding: 0 auto;
+   margin:0 auto;
+   text-align: left;
+   padding-top:10px;
+   
+ }
+ 
+
+ .tryThis img{
+   width: 100%;
+   margin-top: 15px;
+   margin-bottom: 15px;
+ }
+
+#logoId{justify-content: left;
+
+}
+ .loginBox{
+   height: 400px;
+   display: grid;
+   grid-template-columns: 1fr .01fr 1fr;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center; 
+ }
+
+ .createUser {
+   width: 50%;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top:50px;
+   padding: 10px 10px;
+
+  display: flex;
+  flex-direction: column;
+ }
+
+ .centerSplit{
+   height: 90%;
+   width: 1px;
+   background-color: #444;
+   opacity: .5;
+   margin-top: 105px;
+ }
+
+ #pBox{position: relative;
+   visibility: visible;
+   border: transparent;
+   width: 15px;
+  background-color: white;
+  right: 5px;
+  top: 150px;
+ }
+
+ .allUserWrap a{
+  
+   font-size: large;
+   color: black;
+   width: 100%;
+   
+ }
+ .allUserWrap{
+   width: 40%;
+   margin-left: auto;
+   margin-right: auto;
+ }
+
+
+ // this is for the welcome box
+
+ #welcomeBox{
+   margin-top:2%;
+   width: 40%;
+   text-align: center;
+   margin-left: auto;
+   margin-right:auto;
+ }
+
+ #hello{
+   font-size: 40px;
+ }
+ 
+ 
+ #forSignOut{
+  border-bottom: none;
+  background-color: transparent;
+  width:100px;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+ }
+
+ #allWrap{
+   width: 300px;
+   margin-right: auto;
+   margin-left: auto;
+   justify-content: left;
+   border-bottom: 1px solid black;
+ }
+
+ .deleteEdit{
+   position: fixed;
+   bottom: 10px;
+ }
+ submit:hover{
+   font-weight: bold;
+ }
+input{
+	flex-direction: row; 
+    color: rgb(0, 0, 0);
+    text-align: center; 
+    border: transparent;
+    border-bottom: 1px solid grey;
+    padding: 15px;
+    
+}
+input:hover{
+  font-weight: bold;
+}
+#loginSubmit{
+  background-color: rgb(74, 74, 218);
+  color: white;
+}
+#createSubmit{
+  background-color: rgb(73, 177, 73);
+  color: white;
+}
+h6{
+    color: white;
+    margin-top:130px;
+    font-size: 18px;
+
+}
+nav{
+  display:flex;
+   text-align:center;
+}
+ 
+.nav ul {
+  display:flex;
+  list-style: none;
+  background-color: rgb(0, 0, 0);
+  text-align: center;
+  margin: 0;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 120px;
+  text-align:center;
+}
+.nav li {
+ 
+  font-size: 1.2em;
+ 
+  padding: 10px;
+  justify-content: left;
+  width: 100px;
+  text-align:center;
+ 
+}
+ 
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: .3s background-color;
+   text-align:center;
+}
+ 
+.nav a:hover {
+  font-weight: bold;
+}
+ 
+.nav a.active {
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+}
+
+div#userInMenu{
+  display: flex;
+  padding-left: 100px;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  justify-content: center;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display:flex;
+flex-direction: column;}
+
+// .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.rightMenu{
+  padding-top: 75px;
+  padding-left:27px;
+  display:inline-flex;
+  flex-direction: column;
+ float: right;
+ font-size: large;
+ 
+}
+
+#head{
+background-image: url('./images/head.png');
+background-size: cover;
+background-repeat: no-repeat;
+background-size: 100% 100%;
+min-width:100px;
+}
+.form{
+  text-align: center;
+}
+
+.formWrap{
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#newButton{
+  border: transparent;
+  border-radius: 50% 50%;
+  height: 50px;
+  width: 50px;
+  margin-top:50px;
+  background: rgb(88, 182, 88);
+}
+
+#plus{
+  font-size: xx-large;
+  padding-top:6px;
+
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

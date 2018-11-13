@@ -1,6 +1,33 @@
-<h2>Page of <%=current_user.username %></h2>
 
-<form method="post" action="logout">
-			<input type="submit" value="logout">
-
+<% if session[:user_id] == @user.id%>
+<h2>Welcome <%= @user.username %></h2>
+<form method='post' action='/destroy/user/<%=@user.id %>'>
+ <h6>Delete Profile</h6>
+ <input type='text'name ='delete_password' placeholder='password' > 
+<input type='submit'> 
 </form>
+<% @user.blogs.each do |x| %>
+<div class='displayWrap'>
+<div class='blogTitle'><a href="/blogs/<%=x.id%>" style="text-decoration:none";><%=x.title%></a></div>
+
+<div class='infoBox'>
+</div>
+</div>
+<% end%>
+<%end%>
+
+
+<% if session[:user_id] != @user.id%>
+<h2> <%= @user.username %>'s Blogs</h2>
+<% @user.blogs.each do |x| %>
+<div class='displayWrap'>
+<div class='blogTitle'><a href="/blogs/<%=x.id%>" style="text-decoration:none";><%=x.title%>-<%=x.user.username%></a></div>
+
+<div class='infoBox'>
+<div class='blogText'><%=x.content%></div>
+</div>
+</div>
+<% end%>
+
+<%end%>
+
