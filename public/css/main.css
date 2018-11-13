@@ -2,7 +2,9 @@
   margin: 0;
   padding: 0;
  background-image: url(https://images.pexels.com/photos/158780/leaf-nature-green-spring-158780.jpeg?auto=compress&cs=tinysrgb&h=350);
- background-size: : 100% 100%;
+ background-size: : content;
+
+ height: 100vh;
  
 
   
@@ -10,6 +12,7 @@
 }
 
 .main-container{
+     width: 100vw;
     margin-left: auto;
     margin-right: auto;
     background-image: url(https://images.pexels.com/photos/158780/leaf-nature-green-spring-158780.jpeg?auto=compress&cs=tinysrgb&h=350);
@@ -20,7 +23,7 @@
 }
 
 
-#flash{width: 150%;
+#flash{width: 100%;
   color:white;
   font-size: 18px;
 
@@ -221,8 +224,9 @@ input:hover{
 }
 h6{
     color: white;
-    margin-top:130px;
+    margin-top:30px;
     font-size: 18px;
+    padding-left: 47%;
 
 }
 nav{

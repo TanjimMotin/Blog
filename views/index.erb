@@ -1,6 +1,6 @@
 <%if !session[:user_id]%>
 
-<div class='loginBox'>
+
 
 <div class='logIn'>
 <h6>Login</h6>
@@ -11,21 +11,14 @@
 <input type='text'name ='password' placeholder='password' > 
 <input type='submit'> 
 </form>
-</div>
-
-<div class='centerSplit'>
-
-</div>
-
-<div>
 <h6>Sign Up</h6>
 <form class='createUser' method='post' action='/signup'>
 <input type='text' name ='username' placeholder='user name' > 
 <input type='text'name ='password' placeholder='password' > 
 <input type='submit'> 
 
-</form>
-</div>
+
+
 
 
 </div>
@@ -37,7 +30,7 @@
 
 
 
-<% @blogs.all.reverse[0..5].each do |x|%>
+<% @blogs.all.reverse[0..20].each do |x|%>
 <div class='displayWrap'>
 
 <div class='blogTitle'><a href="/blogs/<%=x.id%>" style="text-decoration:none";><%=x.title%></a></div>
